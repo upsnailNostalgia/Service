@@ -1,0 +1,7 @@
+[2019-12-16-15:07:26]start consumer
+[2019-12-16-15:07:26]ProjectManager:0:50: key=None value=b'{"branch":"zhonghui20191012","password":"9608105998zzt","private":true,"projectId":"03432ebe-70ba-4032-83c6-933653b27ac3","url":"https://github.com/FudanSELab/IssueTracker-Master","username":"upsnailNostalgia"}'
+[2019-12-16-15:07:26]仓库元信息获取成功！
+[2019-12-16-15:07:26]仓库已下载，开始链接...
+[2019-12-16-15:08:08]ProjectManager:0:51: key=None value=b'{"branch":"zhonghui20191012","private":false,"projectId":"0c45ddab-85ec-49fa-b650-4ddacf835d48","url":"https://github.com/FudanSELab/IssueTracker-Master"}'
+[2019-12-16-15:08:10]仓库元信息获取成功！
+[2019-12-16-15:08:10]仓库已下载，开始链接...

@@ -1,0 +1,144 @@
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+error: Your local changes to the following files would be overwritten by checkout:
+	src/main/java/com/owlike/genson/BeanView.java
+	src/main/java/com/owlike/genson/Context.java
+	src/main/java/com/owlike/genson/Deserializer.java
+	src/main/java/com/owlike/genson/Factory.java
+	src/main/java/com/owlike/genson/GenericType.java
+	src/main/java/com/owlike/genson/Genson.java
+	src/main/java/com/owlike/genson/Serializer.java
+	src/main/java/com/owlike/genson/TransformationException.java
+	src/main/java/com/owlike/genson/annotation/Creator.java
+	src/main/java/com/owlike/genson/annotation/JsonProperty.java
+	src/main/java/com/owlike/genson/annotation/WithBeanView.java
+	src/main/java/com/owlike/genson/ext/spring/ExtendedReqRespBodyMethodProcessor.java
+	src/main/java/com/owlike/genson/ext/spring/GensonMessageConverter.java
+	src/main/java/com/owlike/genson/reflect/AbstractBeanDescriptorProvider.java
+	src/main/java/com/owlike/genson/reflect/BaseBeanDescriptorProvider.java
+	src/main/java/com/owlike/genson/reflect/BeanCreator.java
+	src/main/java/com/owlike/genson/reflect/BeanDescriptorProvider.java
+	src/main/java/com/owlike/genson/reflect/BeanMutatorAccessorResolver.java
+	src/main/java/com/owlike/genson/reflect/BeanProperty.java
+	src/main/java/com/owlike/genson/reflect/BeanViewDescriptorProvider.java
+	src/main/java/com/owlike/genson/reflect/PropertyAccessor.java
+	src/main/java/com/owlike/genson/reflect/PropertyMutator.java
+	src/main/java/com/owlike/genson/reflect/PropertyNameResolver.java
+	src/main/java/com/owlike/genson/stream/ObjectWriter.java
+	src/main/java/com/owlike/genson/stream/ValueType.java
+	src/test/java/com/owlike/genson/GensonBenchmark.java
+	src/test/java/com/owlike/genson/JsonSerDeserSymetricTest.java
+	src/test/java/com/owlike/genson/bean/ComplexObject.java
+	src/test/java/com/owlike/genson/bean/Primitives.java
+	src/test/java/com/owlike/genson/convert/JsonDeserializationTest.java
+	src/test/java/com/owlike/genson/convert/JsonSerializationTest.java
+	src/test/java/com/owlike/genson/reflect/TypeUtilTest.java
+	src/test/java/com/owlike/genson/stream/JsonReaderTest.java
+Please, commit your changes or stash them before you can switch branches.
+Aborting
+You are not currently on a branch. Please specify which
+branch you want to merge with. See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+M	xchart/src/main/java/org/knowm/xchart/CategoryChart.java
+M	xchart/src/main/java/org/knowm/xchart/internal/chartpart/PlotContent_Pie.java
+Your branch is behind 'origin/master' by 44 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+error: Your local changes to the following files would be overwritten by merge:
+	xchart/src/main/java/org/knowm/xchart/CategoryChart.java
+	xchart/src/main/java/org/knowm/xchart/internal/chartpart/PlotContent_Pie.java
+Please, commit your changes or stash them before you can merge.
+Aborting
+Updating d144a23..9ceb16e
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+Already on 'master'
+Already up-to-date.
+error: you need to resolve your current index first
+CHANGELOG.md: needs merge
+src/main/java/org/bytedeco/javacpp/tools/Generator.java: needs merge
+U	CHANGELOG.md
+M	src/main/java/org/bytedeco/javacpp/Pointer.java
+M	src/main/java/org/bytedeco/javacpp/tools/Builder.java
+U	src/main/java/org/bytedeco/javacpp/tools/Generator.java
+M	src/main/java/org/bytedeco/javacpp/tools/InfoMap.java
+Pull is not possible because you have unmerged files.
+Please, fix them up in the work tree, and then use 'git add/rm <file>'
+as appropriate to mark resolution, or use 'git commit -a'.
+error: you need to resolve your current index first
+CHANGELOG.md: needs merge
+src/main/java/org/bytedeco/javacpp/tools/Generator.java: needs merge
+U	CHANGELOG.md
+M	src/main/java/org/bytedeco/javacpp/Pointer.java
+M	src/main/java/org/bytedeco/javacpp/tools/Builder.java
+U	src/main/java/org/bytedeco/javacpp/tools/Generator.java
+M	src/main/java/org/bytedeco/javacpp/tools/InfoMap.java
+Pull is not possible because you have unmerged files.
+Please, fix them up in the work tree, and then use 'git add/rm <file>'
+as appropriate to mark resolution, or use 'git commit -a'.
+error: you need to resolve your current index first
+CHANGELOG.md: needs merge
+src/main/java/org/bytedeco/javacpp/tools/Generator.java: needs merge
+U	CHANGELOG.md
+M	src/main/java/org/bytedeco/javacpp/Pointer.java
+M	src/main/java/org/bytedeco/javacpp/tools/Builder.java
+U	src/main/java/org/bytedeco/javacpp/tools/Generator.java
+M	src/main/java/org/bytedeco/javacpp/tools/InfoMap.java
+Pull is not possible because you have unmerged files.
+Please, fix them up in the work tree, and then use 'git add/rm <file>'
+as appropriate to mark resolution, or use 'git commit -a'.
+error: you need to resolve your current index first
+CHANGELOG.md: needs merge
+src/main/java/org/bytedeco/javacpp/tools/Generator.java: needs merge
+U	CHANGELOG.md
+M	src/main/java/org/bytedeco/javacpp/Pointer.java
+M	src/main/java/org/bytedeco/javacpp/tools/Builder.java
+U	src/main/java/org/bytedeco/javacpp/tools/Generator.java
+M	src/main/java/org/bytedeco/javacpp/tools/InfoMap.java
+Pull is not possible because you have unmerged files.
+Please, fix them up in the work tree, and then use 'git add/rm <file>'
+as appropriate to mark resolution, or use 'git commit -a'.
+Already on 'master'
+Your branch is ahead of 'origin/master' by 22 commits.
+  (use "git push" to publish your local commits)
+Already up-to-date.
