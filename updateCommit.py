@@ -53,6 +53,12 @@ while True:
                     sql='select max(self_index) from commit where repo_id = "%s"' % uuid
                 )[0][0]
 
+                for i in range(3):
+                    # 项目备份名:<repo_name>_duplicate_fdse-<index>
+                    os.chdir(REPO_PATH + '/%s/%s/%s_duplicate_fdse-%s' % (repo_type, user, repo_name, str(i))) # 之后要加入分支名
+                    os.system('git checkout %s' % branch)
+                    os.system('git pull')
+
                 if length > max_index:
                     producer = KafkaProducer(bootstrap_servers=KAFKA_HOST, api_version=(0, 9))
                     msg = {
@@ -63,12 +69,6 @@ while True:
                     }
                     producer.send(KAFKA_TOPIC_COMPLETE_DOWNLOAD, json.dumps(msg).encode())
                     producer.close()
-
-                for i in range(3):
-                    # 项目备份名:<repo_name>_duplicate_fdse-<index>
-                    os.chdir(REPO_PATH + '/%s/%s/%s_duplicate_fdse-%s' % (repo_type, user, repo_name, str(i))) # 之后要加入分支名
-                    os.system('git checkout %s' % branch)
-                    os.system('git pull')
 
             except Exception as e:
                 log(e.__str__())
