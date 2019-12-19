@@ -23,7 +23,7 @@ REPO_PATH = '/home/fdse/user/issueTracker/repo'
 LOCAL_ADDR_PREFIX = 'github'
 REPO_ROOT_PATH_PATTERN = 'github.com/([\S]{1,})'
 
-GITHUB_TOKEN = 'd6b6b5439dbe3c065e5cf76d72c18db33403b53f'
+GITHUB_TOKEN = '1059778b6c88a0740a1a7f37f0fc58eb2e644b67'
 GITLAB_TOKEN = ''
 GIT_API_URL_PREFIX = 'https://api.github.com/repos'
 GIT_REMOTE_PREFIX = 'github.com'
