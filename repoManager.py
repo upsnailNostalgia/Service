@@ -92,6 +92,7 @@ def get_project_info(addr):
                 log('状态码: ' + str(response.status_code))
                 return None
             json_data = response.json()
+            log('headers: ' + str(response.headers))
         except Exception as e:
             log(e.__str__())
             traceback.print_exc()
