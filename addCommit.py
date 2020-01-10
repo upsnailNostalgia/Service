@@ -20,14 +20,22 @@ def local_to_utc(time_str, utc_format='%a %b %d %H:%M:%S %Y %z'):
     local_dt = utc_dt.replace(tzinfo=timezone).astimezone(pytz.utc)
     return local_dt.strftime(local_format)
 
+
 def log(string):
     t = time.strftime(r"%Y-%m-%d-%H:%M:%S", time.localtime())
     print("[%s]%s" % (t, string))
 
+
 def create_commit_log(path):
     import os
     os.chdir(path)
-    os.system('git log --pretty=format:"%H|++*淦*++|%an|++*淦*++|%ad|++*淦*++|%ae|++*淦*++|%s" > commit_log.log')
+    os.system('git log --pretty=format:"%H|++*淦*++|%an|++*淦*++|%ad|++*淦*++|%ae|++*淦*++|%s|++*淦*++|%P" > commit_log.log')
+
+
+def get_parent_commit(path, commit_id):
+    import os
+    os.chdir(path)
+    os.system('git show -s --format=%P ' + commit_id + ' > parent_commit_log.log')
 
 
 def get_commit_info(path, max_index):
@@ -43,6 +51,7 @@ def get_commit_info(path, max_index):
         developer_email = []
         message = []
         self_index = []
+        parent_commit = []
 
         for line in f.readlines():
             commit_list.append(line.split('|++*淦*++|'))
@@ -55,6 +64,7 @@ def get_commit_info(path, max_index):
             commit_time.append(local_to_utc(commit_list[index][2]))
             developer_email.append(commit_list[index][3])
             message.append(commit_list[index][4])
+            parent_commit.append(commit_list[index][5].replace('\n','').split(' ').__str__())
 
         dic = dict()
         dic['uuids'] = uuids
@@ -64,8 +74,11 @@ def get_commit_info(path, max_index):
         dic['developer_email'] = developer_email
         dic['developer'] = developer
         dic['self_index'] = self_index
+        dic['parent_commit'] = parent_commit
 
+        # log("dic为:++++++  " + dic.__str__())
         return dic
+
 
 config = configparser.ConfigParser()
 config.read('config.conf')
@@ -108,7 +121,8 @@ for msg in consumer:
                 'repo_id':[repo_id] * len(commit_info['uuids']),
                 'developer':commit_info['developer'],
                 'developer_email':commit_info['developer_email'],
-                'self_index':commit_info['self_index']
+                'self_index':commit_info['self_index'],
+                'parent_commit':commit_info['parent_commit']
             },
             mode='multiple'
         )
@@ -118,6 +132,7 @@ for msg in consumer:
                 msg = {
                     'repoId': repo_id,
                     'commitId': commit_info['commit_id'][len(commit_info['commit_id']) - index - 1],
+                    'parentCommit': commit_info['parent_commit'][len(commit_info['parent_commit']) - index - 1],
                     'category': 'bug'
                 }
                 producer.send(KAFKA_TOPIC_SCAN, json.dumps(msg).encode())
@@ -126,11 +141,12 @@ for msg in consumer:
             commit_info.clear()
 
         if flag == 'first added and not existed':
-            for commit_id, commit_time in zip(commit_info['commit_id'], commit_info['commit_time']):
+            for commit_id, commit_time, parent_commit in zip(commit_info['commit_id'], commit_info['commit_time'], commit_info['parent_commit']):
                 msg = {
                     'repoId': repo_id,
                     'commitId': commit_id,
                     'commitTime': commit_time,
+                    'parentCommit': parent_commit
                 }
                 msg_list.append(msg)
             msg_list.sort(key=lambda x: x['commitTime'])
@@ -148,13 +164,14 @@ for msg in consumer:
         ret = MysqlOperation.get_data_from_mysql(
             tablename='commit',
             params={'repo_id':repo_id},
-            fields=['commit_id', 'commit_time']
+            fields=['commit_id', 'commit_time', 'parent_commmit']
         )
         for item in ret:
             msg = {
                 'repoId': repo_id,
                 'commitId': item[0],
                 'commitTime': item[1].__str__(),
+                'parentCommit': item[2]
             }
             msg_list.append(msg)
         msg_list.sort(key=lambda x: x['commitTime'])

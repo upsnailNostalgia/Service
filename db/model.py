@@ -18,7 +18,6 @@ class RepositoryModel(Base):
 
 class CommitModel(Base):
     __tablename__ = 'commit'
-
     uuid = Column(String(36), primary_key=True)
     commit_id = Column(String(64))
     message = Column(MEDIUMTEXT)
@@ -27,6 +26,7 @@ class CommitModel(Base):
     repo_id = Column(String(36))
     developer_email = Column(String(255))
     self_index = Column(Integer)
+    parent_commit = Column(String(255))
 
 
 if __name__ == '__main__':
