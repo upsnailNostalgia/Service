@@ -64,7 +64,7 @@ def get_commit_info(path, max_index):
             commit_time.append(local_to_utc(commit_list[index][2]))
             developer_email.append(commit_list[index][3])
             message.append(commit_list[index][4])
-            parent_commit.append(commit_list[index][5].replace('\n','').split(' ').__str__())
+            parent_commit.append(commit_list[index][5].replace('\n', '').split(' ').__str__())
 
         dic = dict()
         dic['uuids'] = uuids
@@ -164,14 +164,14 @@ for msg in consumer:
         ret = MysqlOperation.get_data_from_mysql(
             tablename='commit',
             params={'repo_id':repo_id},
-            fields=['commit_id', 'commit_time', 'parent_commmit']
+            fields=['commit_id', 'commit_time', 'parent_commit']
         )
         for item in ret:
             msg = {
                 'repoId': repo_id,
                 'commitId': item[0],
                 'commitTime': item[1].__str__(),
-                'parentCommit': item[2]
+                'parentCommit': item[2].__str__()
             }
             msg_list.append(msg)
         msg_list.sort(key=lambda x: x['commitTime'])
