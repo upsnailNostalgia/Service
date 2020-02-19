@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 import configparser
 import json
 import time
@@ -60,7 +60,8 @@ class RepositoryHandler(Thread):
         else:
             try:
                 log('仓库下载成功！')
-                download_message = {'repoId': repository_service.repository.uuid, 'local_addr': repository.local_addr, 'max_index': 0,
+                download_message = {'repoId': repository_service.repository.uuid, 'local_addr': repository.local_addr,
+                                    'max_index': 0,
                                     'flag': 'first added and not existed'}
                 send_msg(host=KAFKA_HOST, recv=KAFKA_TOPIC_3, msg=download_message)
                 repo_message = {
@@ -81,11 +82,10 @@ class RepositoryHandler(Thread):
                 traceback.print_exc()
 
 
-
 def get_project_info(addr):
     flag = 0
     while True:
-        try:# https://api.github.com/repos/
+        try:  # https://api.github.com/repos/
             url = GIT_API_URL_PREFIX + '/' + addr
             response = requests.get(url, timeout=15, headers=API_HEADER[REPO_TYPE])
             if response.status_code != 200:
@@ -128,6 +128,7 @@ def send_msg(host, recv, msg):
     producer.send(recv, json.dumps(msg).encode())
     producer.close()
 
+
 if __name__ == '__main__':
 
     log('start consumer')
@@ -151,7 +152,13 @@ if __name__ == '__main__':
             username = None
             password = None
             branch = json_data['branch']
-            addr = re.findall(REPO_ROOT_PATH_PATTERN, url)[0]
+            list_addr = re.findall(REPO_ROOT_PATH_PATTERN, url)
+            # 首先得验证url是否输入得正确，不然程序会崩溃
+            if list_addr.__len__() == 0:
+                log('输入的url地址不符合标准！')
+                send_failed_msg(project_id)
+                continue
+            addr = list_addr[0]
             local_addr = REPO_TYPE + '/' + addr + '-' + branch
             if json_data['private'] is True:
                 username = json_data['username']
@@ -170,15 +177,16 @@ if __name__ == '__main__':
                 send_failed_msg(project_id)
             else:
                 log('仓库元信息获取成功！')
-                repository_id = project_info.get('id') if project_info.get('id') is None else int(project_info.get('id'))
-                repository = RepositoryModel(repository_id = repository_id,
-                                             language = project_info.get('language'),
-                                             uuid = UUID.uuid1().__str__(),
-                                             url = url,
-                                             description = project_info.get('description'),
-                                             is_private = json_data['private'],
-                                             local_addr = local_addr,
-                                             branch = branch)
+                repository_id = project_info.get('id') if project_info.get('id') is None else int(
+                    project_info.get('id'))
+                repository = RepositoryModel(repository_id=repository_id,
+                                             language=project_info.get('language'),
+                                             uuid=UUID.uuid1().__str__(),
+                                             url=url,
+                                             description=project_info.get('description'),
+                                             is_private=json_data['private'],
+                                             local_addr=local_addr,
+                                             branch=branch)
                 repository_service = RepositoryService(repository, username, password)
                 if not repository_service.is_existed():
                     handler = RepositoryHandler(repository_service)

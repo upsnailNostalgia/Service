@@ -36,6 +36,7 @@ REDIS_PASSWORD = config.REDIS['password']
 GIT_REMOTE_PREFIX = config.GIT_REMOTE_PREFIX
 CLONE_PROTOCOL = config.CLONE_PROTOCOL
 
+
 class RepositoryService():
 
     def __init__(self, repository, username, password):
@@ -109,7 +110,7 @@ class RepositoryService():
 
     def is_existed(self):
         repository_dao = Dao.RepositoryDao(self.repository)
-        return repository_dao.get_uuid_by_local_addr() != None
+        return repository_dao.get_uuid_by_local_addr() is not None
 
     def remove_repository(self):
         os.removedirs(REPO_PATH + '/' + self.repository.local_addr)
