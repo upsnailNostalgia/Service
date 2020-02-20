@@ -15,9 +15,10 @@ REDIS = config.REDIS
 DB = config.ISSUE_TRACKER_MYSQL_DB
 HOST = config.LOCALHOST
 
+
 def release_sources():
     from redis import Redis
-    r = Redis(host=REDIS['host'],password= REDIS['password'], db=REDIS['db'])
+    r = Redis(host=REDIS['host'], password=REDIS['password'], db=REDIS['db'])
 
     from libs.tool import db_connect
     from db.model import RepositoryModel
@@ -32,7 +33,7 @@ def release_sources():
         key_length = r.llen(item.uuid)
         for value in r.lrange(item.uuid, 0, key_length - 1):
             s.add(value)
-        if s.__len__() < key_length: # 释放出现问题,重复none或重复键值
+        if s.__len__() < key_length:  # 释放出现问题,重复none或重复键值
             for index in range(key_length):
                 if index == 0:
                     r.lpush(item.uuid, 'none')

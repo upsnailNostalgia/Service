@@ -29,7 +29,7 @@ def log(string):
 def create_commit_log(path):
     import os
     os.chdir(path)
-    os.system('git log --pretty=format:"%H|++*淦*++|%an|++*淦*++|%ad|++*淦*++|%ae|++*淦*++|%s|++*淦*++|%P" > commit_log.log')
+    os.system('git log --pretty=format:"%H|++*淦*++|%an|++*淦*++|%cd|++*淦*++|%ae|++*淦*++|%s|++*淦*++|%P" > commit_log.log')
 
 
 def get_parent_commit(path, commit_id):

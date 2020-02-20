@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 
 import configparser
 import json
@@ -14,7 +14,8 @@ config.read('config.conf')
 KAFKA_HOST = config.get('KafkaHost', 'host-1')
 
 REPO_PATH = config.get('Path', 'path')
-KAFKA_TOPIC_COMPLETE_DOWNLOAD = config.get('KafkaTopic', 'topic-3')     # config中加入新配置
+KAFKA_TOPIC_COMPLETE_DOWNLOAD = config.get('KafkaTopic', 'topic-3')  # config中加入新配置
+
 
 def log(string):
     t = time.strftime(r"%Y-%m-%d-%H:%M:%S", time.localtime())
@@ -55,7 +56,8 @@ while True:
 
                 for i in range(3):
                     # 项目备份名:<repo_name>_duplicate_fdse-<index>
-                    os.chdir(REPO_PATH + '/%s/%s/%s_duplicate_fdse-%s' % (repo_type, user, repo_name, str(i))) # 之后要加入分支名
+                    os.chdir(
+                        REPO_PATH + '/%s/%s/%s_duplicate_fdse-%s' % (repo_type, user, repo_name, str(i)))  # 之后要加入分支名
                     os.system('git checkout %s' % branch)
                     os.system('git pull')
 
@@ -63,9 +65,9 @@ while True:
                     producer = KafkaProducer(bootstrap_servers=KAFKA_HOST, api_version=(0, 9))
                     msg = {
                         'repoId': uuid,
-                        'local_addr':item[1],
-                        'max_index':max_index,
-                        'flag':'not first added and existed'
+                        'local_addr': item[1],
+                        'max_index': max_index,
+                        'flag': 'not first added and existed'
                     }
                     producer.send(KAFKA_TOPIC_COMPLETE_DOWNLOAD, json.dumps(msg).encode())
                     producer.close()

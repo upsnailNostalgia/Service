@@ -96,7 +96,8 @@ class RepositoryService():
             if ret != 0:
                 raise Exception('生成副本失败！')
             else:
-                r.lpush(self.repository.uuid, "%s-%s-%s" % (LOCALHOST, self.repository.branch, str(i)))
+                # r.lpush(self.repository.uuid, "%s-%s-%s" % (LOCALHOST, self.repository.branch, str(i)))
+                r.lpush(self.repository.uuid, "%s-%s" % (self.repository.branch, str(i)))
         # 发送给其他服务器 进行备份
         r.rpush(self.repository.uuid, 'none')
 
